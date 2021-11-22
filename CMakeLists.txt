@@ -4,9 +4,6 @@ project(QtPDF)
 
 set(CMAKE_CXX_STANDARD 14)
 
-
-add_library(QtPDF SHARED hello.c 1.c 2.c ...)
-
 IF (WIN32)
 	MESSAGE(STATUS "Now is windows")
 	set(CMAKE_PREFIX_PATH "C:\\Qt\\5.15.2\\msvc2019_64\\bin")
@@ -36,8 +33,14 @@ get_target_property(QtCore_location Qt5::Core LOCATION)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 get_target_property(QtCore_location Qt5::Network LOCATION)
 
-add_executable(QtPDF
-
+add_library(QtPDF SHARED 
+	# ./pdf/qtpdf-config.h
+	#./pdf/api/qtpdfglobal.h
+	# ./pdf/qpdfselection.cpp
+	# ./pdf/api/qpdfselection.h
+	# ./pdf/api/qpdfselection_p.h
+	main.cpp
+	main.h
 )
 
 find_package(PDFium)
