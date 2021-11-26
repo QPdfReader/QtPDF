@@ -23,6 +23,15 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 endif()
 
+
+add_definitions(-DQT_BUILD_PDF_LIB) #定义导出宏
+
+
+include_directories(./
+					./pdf/api/
+					./QtPdf/				
+)
+
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 get_target_property(QtCore_location Qt5::Widgets LOCATION)
 
@@ -39,8 +48,34 @@ add_library(QtPDF SHARED
 	# ./pdf/qpdfselection.cpp
 	# ./pdf/api/qpdfselection.h
 	# ./pdf/api/qpdfselection_p.h
-	main.cpp
-	main.h
+	./pdf/api/qpdfbookmarkmodel.h
+	./pdf/api/qpdfdestination_p.h
+	./pdf/api/qpdfdestination.h
+	./pdf/api/qpdfdocument_p.h
+	./pdf/api/qpdfdocument.h
+	./pdf/api/qpdfdocumentrenderoptions.h
+	./pdf/api/qpdflinkmodel_p_p.h
+	./pdf/api/qpdflinkmodel_p.h
+	./pdf/api/qpdfnamespace.h
+	./pdf/api/qpdfpagenavigation.h
+	./pdf/api/qpdfpagerenderer.h
+	./pdf/api/qpdfsearchmodel_p.h
+	./pdf/api/qpdfsearchmodel.h
+	./pdf/api/qpdfsearchresult_p.h
+	./pdf/api/qpdfsearchresult.h
+	./pdf/api/qpdfselection_p.h
+	./pdf/api/qpdfselection.h
+
+
+	./pdf/qpdfdestination.cpp
+	./pdf/qpdfdocument.cpp
+	./pdf/qpdfbookmarkmodel.cpp
+	./pdf/qpdflinkmodel.cpp
+	./pdf/qpdfpagenavigation.cpp
+	./pdf/qpdfpagerenderer.cpp
+	./pdf/qpdfsearchmodel.cpp
+	./pdf/qpdfsearchresult.cpp
+	./pdf/qpdfselection.cpp
 )
 
 find_package(PDFium)
